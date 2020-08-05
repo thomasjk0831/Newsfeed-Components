@@ -130,6 +130,7 @@ function articleMaker(obj){
   const p2 = document.createElement('p')
   const p3 = document.createElement('p')
   const spanExpand = document.createElement('span')
+  const spanRemove = document.createElement('span')
   
   articleH2 .textContent = obj.title
   dateP.textContent = obj.date
@@ -138,10 +139,13 @@ function articleMaker(obj){
   p3.textContent = obj.thirdParagraph
   
   spanExpand.textContent = "+"
+  spanRemove.textContent = "x"
   
   articleDiv.classList.add('article')
   dateP.classList.add('date')
   spanExpand.classList.add('expandButton')
+  spanRemove.classList.add('removeButton')
+
 
   articleDiv.appendChild(articleH2);
   articleDiv.appendChild(dateP);
@@ -149,6 +153,7 @@ function articleMaker(obj){
   articleDiv.appendChild(p2);
   articleDiv.appendChild(p3);
   articleDiv.appendChild(spanExpand);
+  articleDiv.appendChild(spanRemove);
 
   spanExpand.addEventListener( 'click', (event)=> {
     articleDiv.classList.toggle('article-open')
@@ -171,7 +176,16 @@ data.forEach( (item)=> {
   
 })
 
-console.log(articles[0])
+//remove article if clicked on remove button
+const article = document.querySelectorAll('.article')
+const spanRemoves = document.querySelectorAll('.removeButton')
+spanRemoves.forEach( (item, index)=> {
+  item.addEventListener('click',(event)=> {
+       articles.removeChild(article[index])
+  })
+})
+
+
   
 
 
