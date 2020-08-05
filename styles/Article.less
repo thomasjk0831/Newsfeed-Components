@@ -61,18 +61,30 @@
 }
 
 .from-left{
-  animation: moveInLeft ease-out 2s;
+  animation: moveInLeft ease-out 1s;
 }
 
 .from-right{
-  animation: moveInRight ease-out 2s;
+  animation: moveInRight ease-out 1s;
 }
 
 
 @keyframes moveInLeft{
   0%{
     opacity: 0;
-    transform: translateX(-50px);
+    transform: translateX(-20px);
+  }
+ 
+  100%{
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight{
+  0%{
+    opacity: 0;
+    transform: translateX(+50px);
   }
  
   100%{
