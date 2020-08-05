@@ -52,9 +52,9 @@ function menuMaker(arr){
 }
 
 const header = document.querySelector('.header')
-console.log(header)
 const menu = menuMaker(menuItems)
-console.log(menu)
-
 header.appendChild(menu)
+
+
+
 

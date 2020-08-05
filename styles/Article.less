@@ -11,6 +11,9 @@
   height: 50px;
   overflow: hidden;
   box-shadow: 2px 2px 2px lightgrey;
+  
+  
+  
 
   h2 {
     font-size: 28px;
@@ -43,6 +46,39 @@
 
 .article-open {
   height: 400px;
+}
+
+.from-left{
+  animation: moveInLeft ease-out 2s;
+}
+
+.from-right{
+  animation: moveInRight ease-out 2s;
+}
+
+
+@keyframes moveInLeft{
+  0%{
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+ 
+  100%{
+    opacity: 1;
+    transform: translate(0);
+  }
+}
+
+@keyframes moveInRight{
+  0%{
+    opacity: 0;
+    transform: translateX(+50px);
+  }
+ 
+  100%{
+    opacity: 1;
+    transform: translate(0);
+  }
 }
 
 

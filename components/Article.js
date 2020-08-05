@@ -158,10 +158,20 @@ function articleMaker(obj){
 }
 
 const articles = document.querySelector('.articles')
+let directionLeft = true;
 
 data.forEach( (item)=> {
   let article = articleMaker(item)
+  if(directionLeft)
+  article.classList.add('from-left')
+  else
+  article.classList.add('from-right')
   articles.appendChild(article)
-
+  directionLeft = !directionLeft
+  
 })
+
+console.log(articles[0])
+  
+
 
