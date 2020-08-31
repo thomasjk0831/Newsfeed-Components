@@ -85,7 +85,17 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'How to be a Web Dev',
+    date: 'Jan 1st, 2030',
+    firstParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. `,
+
+    secondParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lectus vestibulum mattis ullamcorper velit sed ullamcorper morbi tincidunt. Ac placerat vestibulum lectus mauris ultrices eros in cursus. Suspendisse in est ante in nibh mauris cursus. Potenti nullam ac tortor vitae purus faucibus ornare suspendisse sed. Ac orci phasellus egestas tellus rutrum. Eros donec ac odio tempor orci. Risus commodo viverra maecenas accumsan lacus vel facilisis volutpat est. Pretium fusc `,
+
+    thirdParagraph: `Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Id venenatis a condimentum vitae sapien pellentesque habitant morbi. Id eu nisl nunc mi ipsum faucibus. Nisl purus in mollis nunc sed id semper risus. Purus sit amet volutpat consequat mauris nunc congue nisi vitae. Nunc sed blandit libero volutpat sed cras ornare arcu. Molestie ac feugiat sed lectus vestibulum. Elit at imperdiet dui accumsan sit. Viverra nam libero justo laoreet sit amet cursus sit.`
   }
+
 ];
 
 /* Step 1: Write a component called 'articleMaker' to create an article. You want your component to return markup like the template below: 
@@ -111,3 +121,71 @@ const data = [
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 */
+
+function articleMaker(obj){
+  const articleDiv = document.createElement('div');
+  const articleH2 = document.createElement('h2');
+  const dateP = document.createElement('p')
+  const p1 = document.createElement('p')
+  const p2 = document.createElement('p')
+  const p3 = document.createElement('p')
+  const spanExpand = document.createElement('span')
+  const spanRemove = document.createElement('span')
+  
+  articleH2 .textContent = obj.title
+  dateP.textContent = obj.date
+  p1.textContent = obj.firstParagraph
+  p2.textContent = obj.secondParagraph
+  p3.textContent = obj.thirdParagraph
+  
+  spanExpand.textContent = "+"
+  spanRemove.textContent = "x"
+  
+  articleDiv.classList.add('article')
+  dateP.classList.add('date')
+  spanExpand.classList.add('expandButton')
+  spanRemove.classList.add('removeButton')
+
+
+  articleDiv.appendChild(articleH2);
+  articleDiv.appendChild(dateP);
+  articleDiv.appendChild(p1);
+  articleDiv.appendChild(p2);
+  articleDiv.appendChild(p3);
+  articleDiv.appendChild(spanExpand);
+  articleDiv.appendChild(spanRemove);
+
+  spanExpand.addEventListener( 'click', (event)=> {
+    articleDiv.classList.toggle('article-open')
+  })
+
+  return articleDiv
+}
+
+const articles = document.querySelector('.articles')
+let directionLeft = true;
+
+data.forEach( (item)=> {
+  let article = articleMaker(item)
+  if(directionLeft)
+  article.classList.add('from-left')
+  else
+  article.classList.add('from-right')
+  articles.appendChild(article)
+  directionLeft = !directionLeft
+  
+})
+
+//remove article if clicked on remove button
+const article = document.querySelectorAll('.article')
+const spanRemoves = document.querySelectorAll('.removeButton')
+spanRemoves.forEach( (item, index)=> {
+  item.addEventListener('click',(event)=> {
+       articles.removeChild(article[index])
+  })
+})
+
+
+  
+
+
